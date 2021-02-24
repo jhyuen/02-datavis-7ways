@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>CS573 a1</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <style>
+    body {
+      margin: 0px; 
+      width: 100vw; 
+      height: 100vh;
+    }
+
+    .svg-container {
+      display: inline-block;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      vertical-align: top;
+      overflow: hidden;
+    }
+
+    .svg-content {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+    <div id="container" class="svg-container">
+    </div>
+
+    <script>
+        console.log(d3); // test if d3 is loaded
+
+        // Add an SVG
+        var svg = d3.select('div#container').append('svg')
+            .attr('viewBox', '0 0 1920 1080')
+            .attr('preserveAspectRatio', 'xMinYMin meet')
+            .classed('svg-content', true)
+
+        var x = d3.scaleLinear()
+            .domain([1500, 5000])
+            .range([0, 800]);
+        
+        var y = d3.scaleLinear()
+            .domain([10, 50])
+            .range([ 500, 0]);
+
+        svg.append("g")
+            .attr("transform","translate(100," + 600 + ")")
+            .call(d3.axisBottom(x));
+
+        svg.append("g")
+            .attr("transform","translate(" + 100 + ", 100)")
+            .call(d3.axisLeft(y));
+
+        d3.csv('/../../cars-sample.csv', function(data) {     
+
+            svg.append('g')
+                .selectAll("dot")
+                .data(data)
+                .enter()
+                .append("circle")
+                    .attr("cx", function (d) { 
+                        //console.log(d.Weight); 
+                        return x(d.Weight);
+                    })
+                    .attr("cy", function (d) { 
+                        //console.log(d.MPG); 
+                        return y(d.MPG); 
+                    })
+                    .attr("r", 10)
+                    .style("fill", "red")
+                    .style("opacity", 0.5);
+            
+        })
+
+        /*
+
+        // Add Rectangles
+        var pedal1 = svg.append('rect')
+            .attr('x', '920')
+            .attr('y', '420')
+            .attr('width', '60')
+            .attr('height', '20')
+            .style('fill', 'navy')
+
+        var pedal2 = svg.append('rect')
+            .attr('x', '860')
+            .attr('y', '620')
+            .attr('width', '60')
+            .attr('height', '20')
+            .style('fill', 'navy')
+
+        */ 
+    </script>
+</body>
+</html>
