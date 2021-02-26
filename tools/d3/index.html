@@ -45,38 +45,67 @@
             .range([0, 800]);
         
         var y = d3.scaleLinear()
-            .domain([10, 50])
+            .domain([10, 49])
             .range([ 500, 0]);
 
         svg.append("g")
-            .attr("transform","translate(100," + 600 + ")")
-            .call(d3.axisBottom(x));
+            .attr("transform","translate(100, 620)")
+            .call(d3.axisBottom(x)
+                    .ticks(4));
+
+        svg.append("text")
+            .attr("x", 530 )
+            .attr("y",  680 )
+            .style("text-anchor", "middle")
+            .text("Weight");
+    
+        svg.append("text")
+            .attr("transform", "rotate(-90)")    
+            .attr("x", -350 )
+            .attr("y",  50 )
+            .style("text-anchor", "middle")
+            .text("MPG");
 
         svg.append("g")
-            .attr("transform","translate(" + 100 + ", 100)")
-            .call(d3.axisLeft(y));
+            .attr("transform","translate(90, 100)")
+            .call(d3.axisLeft(y)
+                    .ticks(4));
 
-        d3.csv('/../../cars-sample.csv', function(data) {     
+        d3.csv('cars-sample.csv', function(data) {     
 
             svg.append('g')
                 .selectAll("dot")
                 .data(data)
                 .enter()
                 .append("circle")
-                    .attr("cx", function (d) { 
-                        //console.log(d.Weight); 
+                    .attr("cx", function (d) {
                         return x(d.Weight);
                     })
-                    .attr("cy", function (d) { 
-                        //console.log(d.MPG); 
+                    .attr("cy", function (d) {
                         return y(d.MPG); 
                     })
-                    .attr("r", 10)
-                    .style("fill", "red")
-                    .style("opacity", 0.5);
-            
+                    .attr("r", function (d) {
+                        return d.Weight*0.003
+                    })
+                    .attr("transform","translate(100, 100)")
+                    .attr("fill", function (d) {
+                        switch(d.Manufacturer) {
+                            case "ford":
+                                return "lime";
+                            case "bmw":
+                                return "red";
+                            case "toyota":
+                                return "purple";
+                            case "honda":
+                                return "green";
+                            case "mercedes":
+                                return "blue";
+                        }
+                    })
+                    .style("opacity", 0.5);  
         })
 
+        
         /*
 
         // Add Rectangles
