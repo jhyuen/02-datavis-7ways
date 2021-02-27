@@ -31,6 +31,10 @@ In my implementation, I created the axis and then added data points in the fetch
 
 I thought that d3 was the most difficult of the tools as it gave the most customization. However, the higher difficulty can be worth it as d3 can produce complex visualizations that have truly unique interactions. For example, it was  annoying to move the circles separately from the axis. In addition, it was strange to add a title to each of the axis. Most of the programs I used had an automatic feature to create an axis title. But even so, I see why d3 does this as to give more freedom to the developer.
 
+Link to Project:
+https://jhyuen.github.io/02-datavis-7ways/tools/d3/
+
+
 ### Screenshots
 ![d3](img/d3-2.png)
 
@@ -60,6 +64,9 @@ To make this scatter plot, I examined JSON implementations of scatter plot examp
 
 Vega-lite in its JSON implementation is straight forward and relatively easy to use. My biggest difficulty was converting the JSON into JS. I can see it being a tool for data scientists with a minimal understanding of programming to communicate data quickly. However, there's not too many customization options for aesthetics which may prevent it from being used for general audiences that likely want more aesthetically pleasing visualizations.
 
+Link to Project:
+https://jhyuen.github.io/02-datavis-7ways/tools/vega-lite/
+
 ### Screenshots
 ![Vega-lite](img/vega-lite.png)
 
@@ -71,6 +78,8 @@ ggplot2 is a statistics and data vis library for the coding language R. It is co
 I looked at some implementations of ggplot2 to get started and was able to write the entire graph in about 3 lines of code. Since the default picture was made in ggplot2, they are almost identical. 
 
 I found that ggplot2 was relatively easy to code, but I found setup to be  annoying. When I downloaded the ggplot2 package, it kept requiring me to download dependencies that wouldn't download. Eventually, I moved to using RStudio within Anaconda for package management. When I used RStudio to add packages, I had the same issue. I realized I had to download the packages through Anaconda. And even though I could download new packages in Anaconda, I still had to download the many dependencies for ggplot2 to run. For that reason, I wouldn't recommend this to a new data vis user. I see this library similarly to Vega-lite which requires a little more coding knowledge and can be used for quick and informative graphs.
+
+See tools/r-ggplot2 for .Rproj
 
 ### Screenshots
 ![r-ggplot2](img/r-ggplot2-1.png)
@@ -84,6 +93,8 @@ Tableau is a popular no coding required (although you can code for custom featur
 To make the scatter plot, I loaded the data into Tableau and then assigned the rows (y-axis) and columns (x-axis) with the appropriate data. Then I defined the circles' color and size by selecting a couple drop down menus, and in minutes I had a fully functional data vis with hover features over each data point.
 
 I thought that Tableau was simple to use as I did not have to use any sort of tutorial. However, I think that it can be intimidating for users less familiar data. It is more complex than Flourish, but it also offers many more features. The benefit of Tableau is that it can be used to make both quick and complex aesthetically pleasing visualizations with no coding required.
+
+See tools/tableau for .twb
 
 ### Screenshots
 ![Tableau - edit interface](img/tableau-1.png)
@@ -100,6 +111,8 @@ Given that Excel is widely used across various industries, I thought that Excel 
 
 I used 2 hacks in Excel. First, I used shapes to cover the minimum value labels. By default, Excel makes the minimum value (ex: 10 and 2000) at the left bottom corner of the graph which cuts off values less than 2000. Thus, I made the actual minimum value to be 0 and 1000 and then moved the x and y axis inward. To eliminate the 0 and 1000 labels, I covered them with a white rectangle. Second, I set the y axis' maximum range to 49 which prevented Excel from adding 50 at the top but still keep the top green dot. 
 
+See tools/excel for .xlsx
+
 ### Screenshots
 ![Excel](img/excel-1.png)
 ![Excel - edit interface](img/excel-2.png)
@@ -113,6 +126,8 @@ Matplotlib is a Python library used to make static, animated, and interactive vi
 To implement the scatter plot, I used a Jupyter notebook to write Python. I loaded the data and stored it in a Pandas dataframe. Then, I set the size of the graph and set the various axis to the correct value. Then I specified the size and color. To set the color of each point, I used an array that contained associations between manufacturer and color such as "ford":"green".
 
 Although the syntax wasn't as intuitive as Vega-lite, I thought that the process of making a graph was rather simple and powerful. Even though it's not as complex as d3, it still offers a wide variety of customization options that can be used to make interactive custom visualizations. Matplotlib is helpful to make quick visualizations with minimal effort. Although it's not as simple as other programs like Flourish and may not be as visually beautiful as d3 or Tableau, Matplotlib offers a middle ground that is likely useful to data scientists who regularly use Python as Matplotlib reads in Python Pandas dataframes.
+
+See tools/matplotlib for .ipynb
 
 ### Screenshots
 ![Matplotlib](img/matplotlib-2.png)
