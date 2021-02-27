@@ -92,19 +92,27 @@ I thought that Tableau was simple to use as I did not have to use any sort of tu
 Excel
 ---
 ### Discussion
-It was har
+Excel is an extremely popular spreadsheet program that offers a wide variety of features to analyze and visualize said spreadsheets.
 
+To make the graph, I isolated the columns that were significant: MPG, Weight, and Manufacturer. I selected the columns and then pressed the button that automatically made a bubble graph. Even though I hoped that a perfect graph would appear, data was assigned to the wrong axis and were all colored the same size. I then went edited the graph but I ran into the issue of assigning colors to each manufacturer. I thought that this would be a built in feature given Excel's popularity, but it was sadly not available. I had to make separate columns that isolated the values for each manufacturer and assign them as "Series." Doing so allowed me to color each series and achieve the desired effect.
 
-Write a paragraph for each visualization tool you use. What was easy? Difficult? Where could you see the tool being useful in the future? Did you have to use any hacks or data manipulation to get the right chart?
+Given that Excel is widely used across various industries, I thought that Excel would be relatively easy to use. However, it was much more tedious to use than other programs. I think that most of my issues derived from Excel's weaker UI design in comparison to data vis programs like Flourish. I think that Excel is useful for people who are already use Excel in their line of work. It's also useful for quick graphs but not necessarily complex, custom visualizations. Even though I complained about Excel's complicated UI, I only spent 20 minutes longer to make the graph.
+
+I used 2 hacks in Excel. First, I used shapes to cover the minimum value labels. By default, Excel makes the minimum value (ex: 10 and 2000) at the left bottom corner of the graph which cuts off values less than 2000. Thus, I made the actual minimum value to be 0 and 1000 and then moved the x and y axis inward. To eliminate the 0 and 1000 labels, I covered them with a white rectangle. Second, I set the y axis' maximum range to 49 which prevented Excel from adding 50 at the top but still keep the top red dot. 
 
 ### Screenshots
 ![Excel](img/excel-1.png)
 ![Excel - edit interface](img/excel-2.png)
+![Excel - spreadsheet](img/excel-3.png)
 
 Matplotlib
 ---
 ### Discussion
-It was hard
+Matplotlib is a Python library used to make static, animated, and interactive visualizations.
+
+To implement the scatter plot, I used a Jupyter notebook to write Python. I loaded the data and stored it in a Pandas dataframe. Then, I set the size of the graph and set the various axis to the correct value. Then I specified the size and color. To set the color of each point, I used an array that contained associations between manufacturer and color such as "ford":"green".
+
+Although the syntax wasn't as intuitive as Vega-lite, I thought that the process of making a graph was rather simple and powerful. Even though it's not as complex as d3, it still offers a wide variety of customization options that can be used to make interactive custom visualizations. Matplotlib is helpful to make quick visualizations with minimal effort. Although it's not as simple as other programs like Flourish and may not be as visually beautiful as d3 or Tableau, Matplotlib offers a middle ground that is likely useful to data scientists who regularly use Python as Matplotlib reads in Python Pandas dataframes.
 
 ### Screenshots
 ![Matplotlib](img/matplotlib-2.png)
