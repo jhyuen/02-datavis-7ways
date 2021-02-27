@@ -25,6 +25,25 @@
       top: 0;
       left: 0;
     }
+
+    div.tooltip-point {
+        position: absolute;
+        text-align: left;
+        padding: .5rem;
+        background: #FFFFFF;
+        color: #000000;
+        border: 1px solid #000000;
+        border-radius: 8px;
+        pointer-events: none;
+        font-family: sans-serif;
+        font-size: 1rem;
+    }
+
+    text {
+        font-family: sans-serif;
+        font-weight: bold;
+    }
+
   </style>
 </head>
 <body>
@@ -32,13 +51,16 @@
     </div>
 
     <script>
-        console.log(d3); // test if d3 is loaded
+        console.log(d3);
 
-        // Add an SVG
         var svg = d3.select('div#container').append('svg')
             .attr('viewBox', '0 0 1920 1080')
             .attr('preserveAspectRatio', 'xMinYMin meet')
             .classed('svg-content', true)
+
+        var tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip-point")
+            .style("opacity", 0);
 
         var x = d3.scaleLinear()
             .domain([1500, 5000])
@@ -102,28 +124,32 @@
                                 return "blue";
                         }
                     })
-                    .style("opacity", 0.5);  
+                    .style("opacity", 0.5)  
+                    .on('mouseover', function (d,i) {
+                        d3.select(this).transition()
+                            .duration('50')
+                            .style('opacity',1);
+
+                        tooltip.transition()
+                            .duration(50)
+                            .style('opacity', 1);
+
+                        let profile = 'Weight: ' + (d.Weight.toString()) + '<br>MPG: ' + (d.MPG.toString()) + '<br>Manufacturer: ' + (d.Manufacturer.toString());
+
+                        tooltip.html(profile)
+                            .style("left", (d3.event.pageX + 20) + "px")
+                            .style("top", (d3.event.pageY - 15) + "px");
+                    })
+                    .on('mouseout', function (d,i) {
+                        d3.select(this).transition()
+                            .duration('50')
+                            .style('opacity',0.5);
+                        
+                        tooltip.transition()
+                            .duration(50)
+                            .style('opacity', 0);
+                    });
         })
-
-        
-        /*
-
-        // Add Rectangles
-        var pedal1 = svg.append('rect')
-            .attr('x', '920')
-            .attr('y', '420')
-            .attr('width', '60')
-            .attr('height', '20')
-            .style('fill', 'navy')
-
-        var pedal2 = svg.append('rect')
-            .attr('x', '860')
-            .attr('y', '620')
-            .attr('width', '60')
-            .attr('height', '20')
-            .style('fill', 'navy')
-
-        */ 
     </script>
 </body>
 </html>

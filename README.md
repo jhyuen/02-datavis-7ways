@@ -32,7 +32,7 @@ In my implementation, I created the axis and then added data points in the fetch
 I thought that d3 was the most difficult of the tools as it gave the most customization. However, the higher difficulty can be worth it as d3 can produce complex visualizations that have truly unique interactions. For example, it was  annoying to move the circles separately from the axis. In addition, it was strange to add a title to each of the axis. Most of the programs I used had an automatic feature to create an axis title. But even so, I see why d3 does this as to give more freedom to the developer.
 
 ### Screenshots
-![d3](img/d3-1.png)
+![d3](img/d3-2.png)
 
 Flourish
 ---
@@ -72,7 +72,7 @@ I looked at some implementations of ggplot2 to get started and was able to write
 
 I found that ggplot2 was relatively easy to code, but I found setup to be  annoying. When I downloaded the ggplot2 package, it kept requiring me to download dependencies that wouldn't download. Eventually, I moved to using RStudio within Anaconda for package management. When I used RStudio to add packages, I had the same issue. I realized I had to download the packages through Anaconda. And even though I could download new packages in Anaconda, I still had to download the many dependencies for ggplot2 to run. For that reason, I wouldn't recommend this to a new data vis user. I see this library similarly to Vega-lite which requires a little more coding knowledge and can be used for quick and informative graphs.
 
-### Image
+### Screenshots
 ![r-ggplot2](img/r-ggplot2-1.png)
 ![r-ggplot2 - edit interface](img/r-ggplot2-2.png)
 
@@ -98,7 +98,7 @@ To make the graph, I isolated the columns that were significant: MPG, Weight, an
 
 Given that Excel is widely used across various industries, I thought that Excel would be relatively easy to use. However, it was much more tedious to use than other programs. I think that most of my issues derived from Excel's weaker UI design in comparison to data vis programs like Flourish. I think that Excel is useful for people who are already use Excel in their line of work. It's also useful for quick graphs but not necessarily complex, custom visualizations. Even though I complained about Excel's complicated UI, I only spent 20 minutes longer to make the graph.
 
-I used 2 hacks in Excel. First, I used shapes to cover the minimum value labels. By default, Excel makes the minimum value (ex: 10 and 2000) at the left bottom corner of the graph which cuts off values less than 2000. Thus, I made the actual minimum value to be 0 and 1000 and then moved the x and y axis inward. To eliminate the 0 and 1000 labels, I covered them with a white rectangle. Second, I set the y axis' maximum range to 49 which prevented Excel from adding 50 at the top but still keep the top red dot. 
+I used 2 hacks in Excel. First, I used shapes to cover the minimum value labels. By default, Excel makes the minimum value (ex: 10 and 2000) at the left bottom corner of the graph which cuts off values less than 2000. Thus, I made the actual minimum value to be 0 and 1000 and then moved the x and y axis inward. To eliminate the 0 and 1000 labels, I covered them with a white rectangle. Second, I set the y axis' maximum range to 49 which prevented Excel from adding 50 at the top but still keep the top green dot. 
 
 ### Screenshots
 ![Excel](img/excel-1.png)
@@ -124,12 +124,21 @@ Achievements
 1. **NA Handling** - As libraries such as ggplot2 automatically eliminated Weight MPG pairs with NA values, I eliminated rows that had NA values in MPG. By doing so, all of my graphs looked the same as some libraries caused NA values to either default to 0 or mark at the top of my graph. 
 2. **Extra Library** - Even though the base requirement was to use 3 libraries, I used an additional library to total 4 libraries: Matplotlib (Python), ggplot2 (R), d3 (JS), and Vega-lite (JS).
 3. **Maintained Aspect Ratio for d3** - I wrapped my d3 implementation in a viewBox with a 1920x1080 aspect ratio. As a result, my points and text automatically scale down as the window becomes smaller.
-4. **d3 Hover** - Devoted tools like tableau offered a feature that allowed the user to hover over a point and get more information on it. I implemented a similar functionality in d3. !!!NEED TO DO!!!
+4. **d3 Hover** - Data Visualization tools like Tableau allowed the user to hover over a point and get more information on it. I implemented a similar functionality in d3. Upon hovering on a point, I add a tooltip and raise the opacity to 1 for the selected point.
+
+![d3 - hover](img/d3-1.png)
 
 ## Design
-1. **Design Achievement 1** - Description
-Create legends for missing ones
-Match colors?
+1. **Flourish Similar Colors** - When making the Flourish graph, I wanted to get the exact colors from the example. To do so, I pulled the example picture into Sketch and used the eye drop tool to get the hex values. I soon realized that the values needed to be darker in order to compensate for the opacity 0.5. As a result, I decreased the luminance of each value. Below you can see my Flourish implementation and my Sketch Artboard that contains the example plot.
+
+![Design - Flourish Example](img/flourish-2.png)
+![Design - Sketch](img/design-1.png)
+
+1. **d3 Font Change** - Every tool, except d3, used a sans-serif font. By default, d3 had sans-serif font for its axis major tick labels, but had a serif font specifically for the axis text label. In order to maintain consistency across all of the tools, I changed the font of the text to a sans-serif font using CSS and d3. Below were the original states of the plots.
+
+![Design - Old tooltip](img/design-2.png)
+![Design - Old plot](img/design-3.png)
+
 
 Resources
 ===
